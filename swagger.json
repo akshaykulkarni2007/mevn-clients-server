@@ -1,0 +1,543 @@
+{
+	"openapi": "3.0.3",
+	"info": {
+		"title": "MEVN Server",
+		"description": "Express server for MEVN project",
+		"version": "0.0.1"
+	},
+	"paths": {
+		"/api/clients": {
+			"get": {
+				"description": "List all clients",
+				"responses": {
+					"200": {
+						"description": "Successfully fetched all clients",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"_id": {
+												"type": "string"
+											},
+											"name": {
+												"type": "string"
+											},
+											"email": {
+												"type": "string"
+											},
+											"phone": {
+												"type": "string"
+											},
+											"providers": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"_id": { "type": "string" },
+														"name": { "type": "string" },
+														"__v": { "type": "number" },
+														"createdAt": { "type": "string" },
+														"updatedAt": { "type": "string" }
+													}
+												}
+											},
+											"__v": {
+												"type": "number"
+											},
+											"createdAt": {
+												"type": "string"
+											},
+											"updatedAt": {
+												"type": "string"
+											}
+										},
+										"example": {
+											"_id": "63875af04a8c688e0694e96a",
+											"name": "Client 1",
+											"email": "test1@test.com",
+											"phone": "123341",
+											"providers": [
+												{
+													"_id": "63875af04a8c688e0694e964",
+													"name": "Provider 8",
+													"__v": 0,
+													"createdAt": "2022-11-30T13:30:24.059Z",
+													"updatedAt": "2022-11-30T13:30:24.059Z"
+												},
+												{
+													"_id": "63875af04a8c688e0694e95f",
+													"name": "Provider 3",
+													"__v": 0,
+													"createdAt": "2022-11-30T13:30:24.059Z",
+													"updatedAt": "2022-11-30T13:30:24.059Z"
+												}
+											],
+											"__v": 0,
+											"createdAt": "2022-11-30T13:30:24.423Z",
+											"updatedAt": "2022-11-30T13:30:24.423Z"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"description": "Add client",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": { "type": "string" },
+								"email": { "type": "string" },
+								"phone": { "type": "string" },
+								"providers": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							},
+							"example": {
+								"name": "Client 100",
+								"email": "test@gmail.com",
+								"phone": "1234567",
+								"providers": ["6388642bf81d527219ee94c5"]
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successfully added client",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"_id": { "type": "string" },
+										"name": { "type": "string" },
+										"email": { "type": "string" },
+										"phone": { "type": "string" },
+										"providers": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"_id": { "type": "string" },
+													"name": { "type": "string" },
+													"__v": { "type": "number" },
+													"createdAt": { "type": "string" },
+													"updatedAt": { "type": "string" }
+												}
+											}
+										},
+										"createdAt": { "type": "string" },
+										"updatedAt": { "type": "string" },
+										"__v": { "type": "number" }
+									}
+								},
+								"example": {
+									"_id": "",
+									"name": "Client 100",
+									"email": "test@gmail.com",
+									"phone": "1234567",
+									"providers": [
+										{
+											"_id": "",
+											"name": "",
+											"__v": 1,
+											"createdAt": "2022-12-01T08:22:03.444Z",
+											"updatedAt": "2022-12-01T08:22:03.444Z"
+										}
+									],
+									"createdAt": "2022-12-01T08:22:03.444Z",
+									"updatedAt": "2022-12-01T08:22:03.444Z",
+									"__v": 0
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/clients/:id": {
+			"get": {
+				"description": "Get details of client by ID",
+				"responses": {
+					"200": {
+						"description": "Successfully fetched client details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"_id": {
+											"type": "string"
+										},
+										"name": {
+											"type": "string"
+										},
+										"email": {
+											"type": "string"
+										},
+										"phone": {
+											"type": "string"
+										},
+										"providers": {
+											"type": "array",
+											"items": {
+												"type": "string"
+											}
+										},
+										"__v": {
+											"type": "number"
+										},
+										"createdAt": {
+											"type": "string"
+										},
+										"updatedAt": {
+											"type": "string"
+										}
+									},
+									"example": {
+										"_id": "63875af04a8c688e0694e96a",
+										"name": "Client 1",
+										"email": "test1@test.com",
+										"phone": "123341",
+										"providers": [
+											"63875af04a8c688e0694e964",
+											"63875af04a8c688e0694e95f",
+											"63875af04a8c688e0694e965"
+										],
+										"__v": 0,
+										"createdAt": "2022-11-30T13:30:24.423Z",
+										"updatedAt": "2022-11-30T13:30:24.423Z"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"description": "Update client",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": { "type": "string" },
+								"email": { "type": "string" },
+								"phone": { "type": "string" },
+								"providers": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							},
+							"example": {
+								"name": "Client 100",
+								"email": "test@gmail.com",
+								"phone": "1234567",
+								"providers": ["6388642bf81d527219ee94c5"]
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successfully updated client",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"_id": {
+											"type": "string"
+										},
+										"name": {
+											"type": "string"
+										},
+										"email": {
+											"type": "string"
+										},
+										"phone": {
+											"type": "string"
+										},
+										"providers": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"_id": { "type": "string" },
+													"name": { "type": "string" },
+													"__v": { "type": "number" },
+													"createdAt": { "type": "string" },
+													"updatedAt": { "type": "string" }
+												}
+											}
+										},
+										"__v": {
+											"type": "number"
+										},
+										"createdAt": {
+											"type": "string"
+										},
+										"updatedAt": {
+											"type": "string"
+										}
+									},
+									"example": {
+										"_id": "63875af04a8c688e0694e96a",
+										"name": "Client 1",
+										"email": "test1@test.com",
+										"phone": "123341",
+										"providers": [
+											{
+												"_id": "63875af04a8c688e0694e964",
+												"name": "Provider 8",
+												"__v": 0,
+												"createdAt": "2022-11-30T13:30:24.059Z",
+												"updatedAt": "2022-11-30T13:30:24.059Z"
+											},
+											{
+												"_id": "63875af04a8c688e0694e95f",
+												"name": "Provider 3",
+												"__v": 0,
+												"createdAt": "2022-11-30T13:30:24.059Z",
+												"updatedAt": "2022-11-30T13:30:24.059Z"
+											}
+										],
+										"__v": 0,
+										"createdAt": "2022-11-30T13:30:24.423Z",
+										"updatedAt": "2022-11-30T13:30:24.423Z"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"description": "Delete client",
+				"responses": {
+					"200": {
+						"description": "Successfully deleted client",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"id": { "type": "string" }
+									}
+								},
+								"example": {
+									"id": "6388642bf81d527219ee94d6"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/providers": {
+			"get": {
+				"description": "Get all providers",
+				"responses": {
+					"200": {
+						"description": "Successfully fetched providers list",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"_id": { "type": "string" },
+											"name": { "type": "string" },
+											"__v": { "type": "number" },
+											"createdAt": { "type": "string" },
+											"updatedAt": { "type": "string" }
+										},
+										"example": {
+											"_id": "63875af04a8c688e0694e95d",
+											"name": "Provider 11",
+											"__v": 0,
+											"createdAt": "2022-11-30T13:30:24.058Z",
+											"updatedAt": "2022-12-01T03:44:50.910Z"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"description": "Add provider",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": { "type": "string" }
+							},
+							"example": {
+								"name": "Provider 100"
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successfully added provider",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"_id": { "type": "string" },
+										"name": { "type": "string" },
+										"createdAt": { "type": "string" },
+										"updatedAt": { "type": "string" },
+										"__v": { "type": "number" }
+									}
+								},
+								"example": {
+									"_id": "6388642bf81d527219ee94d6",
+									"name": "Provider 100",
+									"createdAt": "2022-12-01T08:22:03.444Z",
+									"updatedAt": "2022-12-01T08:22:03.444Z",
+									"__v": 0
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/providers/:id": {
+			"get": {
+				"description": "Get details of client by ID",
+				"responses": {
+					"200": {
+						"description": "Successfully fetched provider details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"_id": { "type": "string" },
+										"name": { "type": "string" },
+										"__v": { "type": "number" },
+										"createdAt": { "type": "string" },
+										"updatedAt": { "type": "string" }
+									}
+								},
+								"example": {
+									"_id": "6388642bf81d527219ee94cc",
+									"name": "Provider 10",
+									"__v": 0,
+									"createdAt": "2022-12-01T08:22:03.135Z",
+									"updatedAt": "2022-12-01T08:22:03.135Z"
+								}
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"description": "Update provider",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": { "type": "string" }
+							},
+							"example": {
+								"name": "Provider 100"
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successfully updated provider",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"_id": {
+											"type": "string"
+										},
+										"name": {
+											"type": "string"
+										},
+										"__v": {
+											"type": "number"
+										},
+										"createdAt": {
+											"type": "string"
+										},
+										"updatedAt": {
+											"type": "string"
+										}
+									},
+									"example": {
+										"_id": "63875af04a8c688e0694e96a",
+										"name": "Provider 1",
+										"__v": 0,
+										"createdAt": "2022-11-30T13:30:24.423Z",
+										"updatedAt": "2022-11-30T13:30:24.423Z"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"description": "Delete provider",
+				"responses": {
+					"200": {
+						"description": "Successfully deleted provider",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"id": { "type": "string" }
+									}
+								},
+								"example": {
+									"id": "6388642bf81d527219ee94d6"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
